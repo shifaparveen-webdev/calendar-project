@@ -58,7 +58,7 @@ The calendar will display the **current month automatically**.
 
 ### Home Page
 
-![Home](images/home.png)
+![Home](images/calendar.png)
 
 ---
 ## 🎯 Learning Outcomes
