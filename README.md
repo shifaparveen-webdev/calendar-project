@@ -33,7 +33,7 @@ calendar-project
 ├── index.html
 └── README.md
 └── images
-    ├── calendar.png
+    └──  calendar.png
 ```
 
 ---
