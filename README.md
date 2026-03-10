@@ -54,6 +54,13 @@ The calendar will display the **current month automatically**.
 
 ---
 
+## 📸 Project Screenshots
+
+### Home Page
+
+![Home](images/home.png)
+
+---
 ## 🎯 Learning Outcomes
 
 Through this project I learned:
