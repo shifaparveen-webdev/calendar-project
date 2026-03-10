@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+
+    <style>
+        .calendar {
+            width: 500px;
+            background-color: rgb(227, 248, 134);
+            padding:30px 30px;
+            border: 3px solid rgb(193, 233, 17);
+            border-radius: 20px;
+            margin:auto;
+            margin-top: 100px;   
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid rgb(193, 233, 17);
+        }
+
+        .day {
+            padding:10px 15px;
+            text-align: center;          
+        }
+
+        .days {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;   
+        }
+
+        .dates {
+        display: grid;
+        grid-template-columns:repeat(7,1fr);
+        gap: 10px;
+        }
+
+        .date {
+        text-align: center;
+        padding: 5px;
+        background-color: #fff;
+        border-radius: 5px;
+        }
+
+        .today {
+            background-color: rgb(243, 186, 61);
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        .date:hover {
+            background-color: rgb(86, 238, 238);
+        }
+   
+        .today:hover {
+            border: 3px solid rgb(160, 110, 3);
+            background-color: rgb(243, 186, 61);
+        }
+        .day:hover {
+            background-color: cyan;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="calendar">
+        <div class="header">
+            <h2 id="month-year"></h2>
+        </div>
+            
+        <div class="days">                            <!--days in a week-->
+            <div class="day">SUN</div>
+            <div class="day">MON</div>
+            <div class="day">TUE</div>
+            <div class="day">WED</div>
+            <div class="day">THU</div>
+            <div class="day">FRI</div>
+            <div class="day">SAT</div>
+        </div>
+
+        <div class="dates" id="dates"></div> 
+    </div>  
+
+    <script>
+        
+        const todays_date = new Date();                     //To get the today's date
+        const month = todays_date.getMonth();               //To get the current month
+        const year = todays_date.getFullYear();             //To get the current year
+
+        
+        const monthYearElement = document.getElementById('month-year');     // Get the element for displaying the month and year
+        
+        monthYearElement.textContent = `${getMonthName(month)} ${year}`;    // Set the month and year in the header
+
+        const datesElement = document.getElementById('dates');              // Get the element for displaying the dates
+
+        generateCalendarDates(month, year);                                 // Function call to Generate the calendar dates 
+
+        function generateCalendarDates(month, year)                         // Function to generate the calendar dates
+        {                       
+            datesElement.innerHTML = '';                                    // Clear any existing dates
+            const totalDays = new Date(year, month + 1, 0).getDate();       // Get the total number of days in the month
+            const firstDay = new Date(year, month, 1).getDay();             // Get the day of the week for the first day of the month
+
+            for (let i = 0; i < firstDay; i++) {                            // Generate the empty cells for preceding days
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('date');
+                datesElement.appendChild(emptyCell);
+            }
+
+            for (let i = 1; i <= totalDays; i++)                            // Generate the date cells for the month
+            {
+                const dateCell = document.createElement('div');
+                dateCell.classList.add('date');
+                dateCell.textContent = i;
+
+                if (i === todays_date.getDate() && month === todays_date.getMonth()      // Check if the current date matches today's date
+                && year === todays_date.getFullYear()) 
+                {
+                    dateCell.classList.add('today');                            // Apply the 'today' class for styling
+                }
+                datesElement.appendChild(dateCell);
+            }          
+        }
+
+        function getMonthName(month)                                        // Function to get the month name
+        {                                         
+            const monthNames = ['January','February','March','April','May','June',
+                                    'July','August','September','October','November','December'];
+            return monthNames[month];
+        }
+
+    </script> 
+</body>
+</html>
